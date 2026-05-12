@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Яндекс.Карты</h2>
+
+<p>Введите название города.</p>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <p>
+        {{ form.city.label }}<br>
+        {{ form.city(size=40) }}
+    </p>
+
+    <p>{{ form.submit() }}</p>
+</form>
+
+{% if error %}
+    <p style="color: red;"><strong>Ошибка:</strong> {{ error }}</p>
+{% endif %}
+
+{% if map_url %}
+    <hr>
+    <h3>Город: {{ city_name }}</h3>
+
+    <h4>Картинка карты:</h4>
+    <img src="{{ map_url }}" alt="Карта города" class="img-fluid border rounded">>
+
+    <h4>Ссылка на ЯКарты:</h4>
+    <p>
+        <a href="{{ yandex_link }}" target="_blank">
+            Открыть {{ city_name }} на ЯКартах
+        </a>
+    </p>
+{% endif %}
+
+{% endblock %}

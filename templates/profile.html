@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <h2>Профиль: {{ user.username }}</h2>
+
+    {% if user.avatar %}
+        <h3>Аватар:</h3>
+        <img src="{{ url_for('uploaded_file', filename=user.avatar) }}">
+    {% else %}
+        <p><strong>Нет аватара.</strong> Загрузите первую картинку - она станет аватаром.</p>
+    {% endif %}
+
+    <h3>Ваши картинки (всего: {{ images|length }}):</h3>
+
+    {% for img in images %}
+        <img src="{{ url_for('uploaded_file', filename=img.filename) }}">
+    {% else %}
+        <p>У вас пока нет загруженных картинок.</p>
+    {% endfor %}
+
+    <p>
+        <a href="/upload">Загрузить новую картинку</a>
+    </p>
+</div>
+
+{% endblock %}
