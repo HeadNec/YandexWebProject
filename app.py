@@ -11,6 +11,9 @@ from models import User, UserImage
 YANDEX_API_GEOCODE_KEY = ""
 YANDEX_API_STATIC_KEY = ""
 
+os.makedirs('static/uploads', exist_ok=True)
+os.makedirs('instance', exist_ok=True)
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '88005553535'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bd.db'
